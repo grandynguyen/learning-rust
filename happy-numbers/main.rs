@@ -1,37 +1,35 @@
+extern crate collections;
+use collections::treemap::TreeSet;
+
 trait Digitize {
-  fn digits(self) -> Vec<int>;
+  fn digits(self) -> Vec<uint>;
 }
 
-impl Digitize for int {
-  fn digits(self) -> Vec<int> {
+impl Digitize for uint {
+  fn digits(self) -> Vec<uint> {
     let mut x = self.clone();
-    let mut vec = Vec::new();
-    while x != 0 {
-      vec.push(x % 10);
-      x = x / 10;
-    };
-    return vec;
+    let mut xs = vec![];
+    if self == 0 {
+      return vec![0];
+    }
+    while x > 0 {
+      xs.push(x % 10);
+      x /= 10;
+    }
+    xs.reverse();
+    xs
   }
 }
 
-fn happy(n: int) -> bool {
-  let mut curr = n.clone();
-  let mut s: Vec<int> = Vec::new();
-  let mut acc;
-
-  while curr > 1 {
-    acc = 0;
-    for x in curr.digits().iter() {
-      acc = *x * *x + acc;
-    }
-    curr = acc;
-    
-    if s.contains(&acc) {
+fn is_happy(n: uint) -> bool {
+  let mut c = n.clone();
+  let mut s: TreeSet<uint> = TreeSet::new();
+  while c > 1 {
+    c = c.digits().iter().fold(0, |a, &b| a + b * b);
+    if s.contains(&c) {
       return false;
-    } else {
-      s.push(acc);
     }
-
+    s.insert(c);
   }
   return true;
 }
@@ -39,9 +37,8 @@ fn happy(n: int) -> bool {
 fn main() {
   let mut found = 0;
   let mut n = 1;
-
   while found < 8 {
-    if happy(n) {
+    if is_happy(n) {
       println!("{}", n);
       found += 1;
     }
