@@ -1,0 +1,11 @@
+#+TITLE: Learning Rust
+
+This is a repo where I stash all the weird and wacky things that I wrote while
+learning Rust. I will make an attempt to keep all the code compatible with the
+latest version of rust.
+
+* Running a Demo/Project
+
+#+BEGIN_SRC shell
+cargo run --bin <project_src_dir>
+#+END_SRC
