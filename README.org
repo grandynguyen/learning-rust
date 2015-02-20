@@ -9,3 +9,9 @@ latest version of rust.
 #+BEGIN_SRC shell
 cargo run --bin <project_src_dir>
 #+END_SRC
+
+
+For example:
+#+BEGIN_SRC shell
+cargo run --bin happy_numbers
+#+END_SRC
