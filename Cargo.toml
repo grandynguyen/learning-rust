@@ -1,0 +1,13 @@
+[package]
+
+name = "learning_rust"
+version = "0.0.1"
+authors = [ "Grandy Nguyen <grandy.nguyen@gmail.com>" ]
+
+[[bin]]
+name = "happy_numbers"
+path = "src/happy_numbers/main.rs"
+
+[[bin]]
+name = "hello_world"
+path = "src/hello_world/main.rs"

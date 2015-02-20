@@ -1,12 +1,13 @@
+#![feature(collections)]
 extern crate collections;
-use collections::treemap::TreeSet;
+use collections::BTreeSet;
 
 trait Digitize {
-  fn digits(self) -> Vec<uint>;
+  fn digits(self) -> Vec<usize>;
 }
 
-impl Digitize for uint {
-  fn digits(self) -> Vec<uint> {
+impl Digitize for usize {
+  fn digits(self) -> Vec<usize> {
     let mut x = self.clone();
     let mut xs = vec![];
     if self == 0 {
@@ -21,9 +22,9 @@ impl Digitize for uint {
   }
 }
 
-fn is_happy(n: uint) -> bool {
+fn is_happy(n: usize) -> bool {
   let mut c = n.clone();
-  let mut s: TreeSet<uint> = TreeSet::new();
+  let mut s: BTreeSet<usize> = BTreeSet::new();
   while c > 1 {
     c = c.digits().iter().fold(0, |a, &b| a + b * b);
     if s.contains(&c) {
